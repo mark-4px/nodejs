@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name=description content="中国简史、上古传说到文明起源">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    
+    <title>中国简史</title>
+    <link href="http://cdn.mark.ah.cn/favicon.ico" rel="icon" type="image/x-icon">
+    <link href="http://cdn.mark.ah.cn/favicon.ico" rel="shortcut icon" >
+    <!-- Standard iPhone -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon.jpg" />
+    <!-- Retina iPhone -->
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon.jpg" />
+    <!-- Standard iPad -->
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon.jpg" />
+    <!-- Retina iPad -->
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon.jpg" />
+    <% styles.forEach(function(style){ %>
+    <link href="<%=style%>?v=<%=version%>" rel="stylesheet">
+    <%})%>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="http://cdn.mark.ah.cn/html5shiv.min.js"></script>
+    <script src="http://cdn.mark.ah.cn/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    
+   <!-- /#header start -->
+    <%include header.ejs %>
+
+    <% sections.forEach(function(section){ %>
+        <section class="section <%=section.style%>">
+            <div class="container">
+                <div class="row mt centered">
+                    <div class="col-lg-4 col-lg-offset-4">
+                        <h3><%=section.title%></h3>
+                        <hr>
+                    </div>
+                </div>
+                
+                <div class="row mt">
+                    <% section.stories.forEach(function(story){ %>
+                        <div class="<%=section.col%>">
+                            <div class="b-link-fade b-animate-go cell">
+                                <img class="img-thumbnail" 
+                                    src="<%=story.img%>"/>
+                                <div class="b-wrapper">
+                                    <p class="b-from-right b-animate b-delay03"><%=story.header%></p>
+                                </div>
+                            </div>
+                            <p><%=story.text%></p>
+                        </div>
+                    <%})%>
+                </div>
+            </div>
+        </section>
+    <%})%>
+    
+   <%include footer.ejs %>
+
+
+    <!-- /#page -->
+    <% scripts.forEach(function(script){ %>
+    <script type="text/javascript" src="<%=script%>?v=<%=version%>"></script>
+    <%})%>
+
+    <script type="text/javascript">
+      $(function (){
+        //动态调整高度
+        $(window).scroll(function() {
+            $('.si').each(function(){
+            var imagePos = $(this).offset().top;
+    
+            var topOfWindow = $(window).scrollTop();
+                if (imagePos < topOfWindow+400) {
+                    $(this).addClass("slideUp");
+                }
+            });
+        });
+
+
+        var adjust = function (){
+            
+            $('.shanggu .cell,.xia .cell,.shang .cell,.zhou .cell,.chunqiu .cell,.qin .cell,.sanguo .cell')
+                .each(function (){
+                //console.log('width: ' + $(this).width() + ' height : ' + ($(this).width()*0.6));
+                $(this).height($(this).width()*0.6);
+            });
+
+
+            //适配图片尺寸
+            /*$('.shanggu .cell img').each(function (){
+                var w = $(this).data('width');
+                var h = $(this).data('height');
+                
+                if (w > h) {
+                    $(this).addClass('img-h');
+                }else{
+                    $(this).addClass('img-v');
+                }
+            });*/
+
+        };
+
+
+        adjust();
+
+
+        $(window).resize(function (){
+            adjust();
+        });
+
+        
+
+        var wow = new WOW(
+          {
+            boxClass:     'wow',      // animated element css class (default is wow)
+            animateClass: 'animated', // animation css class (default is animated)
+            offset:       250,          // distance to the element when triggering the animation (default is 0)
+            mobile:       true,       // trigger animations on mobile devices (default is true)
+            live:         true,       // act on asynchronously loaded content (default is true)
+            callback:     function(box) {
+              // the callback is fired every time an animation is started
+              // the argument that is passed in is the DOM node being animated
+            }
+          }
+        );
+        wow.init();
+        
+      });
+    </script> 
+  </body>
+</html>

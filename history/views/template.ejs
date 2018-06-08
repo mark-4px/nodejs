@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name=description content="吴伟的个人博客、关注前端开发 、分享优秀技术和文章、欢迎关注和交流">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    
+    <title>Home</title>
+    <link href="http://cdn.mark.ah.cn/favicon.ico" rel="icon" type="image/x-icon">
+    <link href="http://cdn.mark.ah.cn/favicon.ico" rel="shortcut icon" >
+    <!-- Standard iPhone -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon.jpg" />
+    <!-- Retina iPhone -->
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon.jpg" />
+    <!-- Standard iPad -->
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon.jpg" />
+    <!-- Retina iPad -->
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon.jpg" />
+    <% styles.forEach(function(style){ %>
+    <link href="<%=style%>?v=<%=version%>" rel="stylesheet">
+    <%})%>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="http://cdn.mark.ah.cn/html5shiv.min.js"></script>
+    <script src="http://cdn.mark.ah.cn/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <!-- /#header start -->
+    <%include header.ejs %>
+    <!-- /#header end  -->
+    
+    <!-- /#nav start -->
+    <%include nav.ejs %>
+    <!-- /#nav end  -->
+
+    <!-- /#个人介绍 start -->
+    <%include description.ejs %>
+    <!-- /#个人介绍 end  -->
+
+    <!-- /#爱好 start -->
+    <%include hobbies.ejs %>
+    <!-- /#爱好 end  -->
+    
+    <!-- /#工作经历 start -->
+    <%include job-history.ejs %>
+    <!-- /#工作经历 end  -->
+
+    <!-- /#技术栈 start -->
+    <%include skills.ejs %>
+    <!-- /#技术栈 end  -->
+
+    <!-- /#联系我 start -->
+    <%include contact.ejs %>
+    <!-- /#联系我 end  -->
+
+    <!-- /#footer start -->
+    <%include footer.ejs %>
+    <!-- /#footer end  -->
+
+
+    <!-- /#page -->
+    <% scripts.forEach(function(script){ %>
+    <script type="text/javascript" src="<%=script%>?v=<%=version%>"></script>
+    <%})%>
+
+    <script type="text/javascript">
+      $(function (){
+        //动态调整高度
+        $('#carousel').css('height',$(window).height() + 'px');
+        $(window).on('resize',function (){
+            $('#carousel').css('height',$(window).height() + 'px');
+        });
+
+        
+      });
+    </script> 
+  </body>
+</html>
